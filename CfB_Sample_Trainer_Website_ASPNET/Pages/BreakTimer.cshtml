@@ -1,0 +1,57 @@
+﻿@page
+@model BreakTimerModel
+@{
+    ViewData["Title"] = "Break Timer";
+}
+
+<h1>Break Timer</h1>
+
+<p>Select break duration:</p>
+
+<button onclick="setTimer(5); stopTimer_SetVisibility(); clearCustomTimerBox();">5 minutes</button>
+<button onclick="setTimer(10); stopTimer_SetVisibility(); clearCustomTimerBox();">10 minutes</button>
+<button onclick="setTimer(15); stopTimer_SetVisibility(); clearCustomTimerBox();">15 minutes</button>
+<button onclick="setTimer(45); stopTimer_SetVisibility(); clearCustomTimerBox();">45 minutes</button>
+<button onclick="setTimer(60); stopTimer_SetVisibility(); clearCustomTimerBox();">1 hour</button>
+
+<p>Or enter custom duration (in minutes):</p>
+<input id="customDuration" type="number" min="1" max="120" />
+<button id="setCustomDuration" onclick="setCustomTimerDuration()" style="display:block">Set Duration</button>
+
+<button id="startButton" onclick="startTimer(); startTimer_SetVisibility();" style="display:block">Start Timer</button>
+<button id="stopButton" onclick="stopTimer(); stopTimer_SetVisibility();" style="display:none">Stop Timer</button>
+
+<p id="timer"></p>
+
+<script>
+
+
+    function setCustomTimerDuration() {
+        let duration = document.getElementById('customDuration').value;
+        setTimer(duration);
+    }
+
+    function startTimer_SetVisibility() {
+        document.getElementById('startButton').style.display = 'none';
+        document.getElementById('stopButton').style.display = 'block';
+    }
+
+    function stopTimer_SetVisibility() {
+        document.getElementById('startButton').style.display = 'block';
+        document.getElementById('stopButton').style.display = 'none';
+    }
+
+    function clearCustomTimerBox() {
+        document.getElementById('customDuration').value = '';
+    }
+
+</script>
+
+@section Scripts {
+    <script src="~/js/timer.js">
+
+       
+    </script>
+
+  
+}
